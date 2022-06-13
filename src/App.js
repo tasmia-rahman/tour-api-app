@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Tours from './components/Tours'
+import IsLoading from './components/IsLoading';
 
 const url = "https://course-api.com/react-tours-project"
 
@@ -26,12 +27,26 @@ function App() {
   useEffect(() => {
     fetchTours();
   }, [])
+
+  const removeTour = (id) => {
+    const filteredTours = tours.filter((tour) => tour.id !== id);
+    setTours(filteredTours); 
+  }
+
+  if(isLoading)
+  {
+    return (
+      <main>
+        <h2 className='center'><IsLoading /></h2>
+      </main>
+    )
+  }
   
   if(tours.length === 0)
   {
     return (
       <main>
-        <div>
+        <div className='center'>
           <h2>No tours left</h2>
           <button onClick={() => {fetchTours()}}>Refresh</button>
         </div>
@@ -41,12 +56,9 @@ function App() {
   return (
     <main>
       {
-        isLoading && <h1>Loading...</h1>
-      }
-      {
         error && <h1>{error}</h1>
       }
-      <Tours tours={tours} />
+      <Tours tours={tours} onRemoveTour={removeTour}/>
     </main>
   );
 }

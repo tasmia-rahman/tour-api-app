@@ -1,10 +1,11 @@
 import React from 'react'
 import Tour from './Tour'
+import './Tours.css'
 
-const Tours = ({tours}) => {
+const Tours = ({tours, onRemoveTour}) => {
   return (
     <section>
-        <div>
+        <div className='title'>
             <h1>Our Tours</h1>
             <div className='underline'></div>
         </div>
@@ -12,7 +13,7 @@ const Tours = ({tours}) => {
             {
                 tours.map((tour) => {
                     return (
-                        <Tour key={tour.id} {...tour} />
+                        <Tour key={tour.id} {...tour} onRemoveTour={onRemoveTour}/>
                     )
                 })
             }

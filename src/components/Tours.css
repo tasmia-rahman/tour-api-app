@@ -1,0 +1,14 @@
+.title h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+.title {
+    text-align: center;
+    margin: 80px 0 50px;
+}
+.underline{
+    width: 70px;
+    height: 3px;
+    background-color: #49a6e9;
+    margin: 10px auto 0;
+}
